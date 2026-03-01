@@ -2999,9 +2999,33 @@ fn languages_and_tools_page(cx: &App) -> SettingsPage {
 }
 
 fn search_and_files_page() -> SettingsPage {
-    fn search_section() -> [SettingsPageItem; 9] {
+    fn search_section() -> [SettingsPageItem; 10] {
         [
             SettingsPageItem::SectionHeader("Search"),
+            SettingsPageItem::SettingItem(SettingItem {
+                title: "Search Mode",
+                description: "Whether project search opens as a panel in the sidebar or as a tab.",
+                field: Box::new(SettingField {
+                    json_path: Some("search.search_mode"),
+                    pick: |settings_content| {
+                        settings_content
+                            .editor
+                            .search
+                            .as_ref()?
+                            .search_mode
+                            .as_ref()
+                    },
+                    write: |settings_content, value| {
+                        settings_content
+                            .editor
+                            .search
+                            .get_or_insert_default()
+                            .search_mode = value;
+                    },
+                }),
+                metadata: None,
+                files: USER,
+            }),
             SettingsPageItem::SettingItem(SettingItem {
                 title: "Whole Word",
                 description: "Search for whole words by default.",

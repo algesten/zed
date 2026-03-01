@@ -812,6 +812,17 @@ pub enum DiffViewStyle {
     Split,
 }
 
+/// Controls whether project search opens as a panel in the sidebar or as a tab.
+#[derive(Default, Copy, Clone, Debug, PartialEq, Eq, Serialize, Deserialize, JsonSchema, MergeFrom, strum::VariantArray, strum::VariantNames)]
+#[serde(rename_all = "snake_case")]
+pub enum SearchMode {
+    /// Opens project search as a tab in the editor (default behavior).
+    #[default]
+    Default,
+    /// Opens project search as a dock panel in the sidebar.
+    Panel,
+}
+
 /// Default options for buffer and project search items.
 #[with_fallible_options]
 #[derive(Clone, Default, Debug, Serialize, Deserialize, JsonSchema, MergeFrom, PartialEq, Eq)]
@@ -828,6 +839,10 @@ pub struct SearchSettingsContent {
     pub regex: Option<bool>,
     /// Whether to center the cursor on each search match when navigating.
     pub center_on_match: Option<bool>,
+    /// Controls whether project search opens as a panel in the sidebar or as a tab.
+    ///
+    /// Default: default
+    pub search_mode: Option<SearchMode>,
 }
 
 #[with_fallible_options]

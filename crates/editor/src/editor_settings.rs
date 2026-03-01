@@ -7,7 +7,7 @@ pub use settings::{
     CompletionDetailAlignment, CurrentLineHighlight, DelayMs, DiffViewStyle, DisplayIn,
     DocumentColorsRenderMode, DoubleClickInMultibuffer, GoToDefinitionFallback, HideMouseMode,
     MinimapThumb, MinimapThumbBorder, MultiCursorModifier, ScrollBeyondLastLine,
-    ScrollbarDiagnostics, SeedQuerySetting, ShowMinimap, SnippetSortOrder,
+    ScrollbarDiagnostics, SearchMode, SeedQuerySetting, ShowMinimap, SnippetSortOrder,
 };
 use settings::{RegisterSetting, RelativeLineNumbers, Settings};
 use ui::scrollbars::{ScrollbarVisibility, ShowScrollbar};
@@ -175,6 +175,8 @@ pub struct SearchSettings {
     pub regex: bool,
     /// Whether to center the cursor on each search match when navigating.
     pub center_on_match: bool,
+    /// Controls whether project search opens as a panel or a tab.
+    pub search_mode: SearchMode,
 }
 
 impl EditorSettings {
@@ -277,6 +279,7 @@ impl Settings for EditorSettings {
                 include_ignored: search.include_ignored.unwrap(),
                 regex: search.regex.unwrap(),
                 center_on_match: search.center_on_match.unwrap(),
+                search_mode: search.search_mode.unwrap(),
             },
             auto_signature_help: editor.auto_signature_help.unwrap(),
             show_signature_help_after_edits: editor.show_signature_help_after_edits.unwrap(),

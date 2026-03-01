@@ -1881,7 +1881,7 @@ mod tests {
     };
     use gpui::{Hsla, TestAppContext, UpdateGlobal, VisualTestContext};
     use language::{Buffer, Point};
-    use settings::{SearchSettingsContent, SettingsStore};
+    use settings::{SearchMode, SearchSettingsContent, SettingsStore};
     use smol::stream::StreamExt as _;
     use unindent::Unindent as _;
     use util_macros::perf;
@@ -3481,6 +3481,7 @@ mod tests {
                 include_ignored: false,
                 regex: false,
                 center_on_match: false,
+                search_mode: SearchMode::Default,
             },
             cx,
         );
@@ -3544,6 +3545,7 @@ mod tests {
                 include_ignored: false,
                 regex: false,
                 center_on_match: false,
+                search_mode: SearchMode::Default,
             },
             cx,
         );
@@ -3582,6 +3584,7 @@ mod tests {
                 include_ignored: false,
                 regex: false,
                 center_on_match: false,
+                search_mode: SearchMode::Default,
             },
             cx,
         );
@@ -3664,6 +3667,7 @@ mod tests {
                         include_ignored: Some(search_settings.include_ignored),
                         regex: Some(search_settings.regex),
                         center_on_match: Some(search_settings.center_on_match),
+                        search_mode: Some(search_settings.search_mode),
                     });
                 });
             });

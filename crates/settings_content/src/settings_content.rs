@@ -101,6 +101,8 @@ pub struct SettingsContent {
 
     pub git_panel: Option<GitPanelSettingsContent>,
 
+    pub search_panel: Option<SearchPanelSettingsContent>,
+
     pub tabs: Option<ItemSettingsContent>,
     pub tab_bar: Option<TabBarSettingsContent>,
     pub status_bar: Option<StatusBarSettingsContent>,
@@ -624,6 +626,24 @@ pub struct GitPanelSettingsContent {
     ///
     /// Default: false
     pub diff_stats: Option<bool>,
+}
+
+#[with_fallible_options]
+#[derive(Clone, PartialEq, Default, Serialize, Deserialize, JsonSchema, MergeFrom, Debug)]
+pub struct SearchPanelSettingsContent {
+    /// Whether to show the search panel button in the status bar.
+    ///
+    /// Default: true
+    pub button: Option<bool>,
+    /// Where to dock the search panel.
+    ///
+    /// Default: left
+    pub dock: Option<DockPosition>,
+    /// Default width of the search panel in pixels.
+    ///
+    /// Default: 360
+    #[serde(serialize_with = "crate::serialize_optional_f32_with_two_decimal_places")]
+    pub default_width: Option<f32>,
 }
 
 #[derive(

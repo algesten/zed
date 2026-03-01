@@ -15232,6 +15232,33 @@ dependencies = [
 ]
 
 [[package]]
+name = "search_panel"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "collections",
+ "db",
+ "editor",
+ "file_icons",
+ "futures 0.3.31",
+ "gpui",
+ "language",
+ "menu",
+ "panel",
+ "project",
+ "search",
+ "serde",
+ "serde_json",
+ "settings",
+ "smol",
+ "text",
+ "theme",
+ "ui",
+ "util",
+ "workspace",
+]
+
+[[package]]
 name = "sec1"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -21848,6 +21875,7 @@ dependencies = [
  "reqwest_client",
  "rope",
  "search",
+ "search_panel",
  "semver",
  "serde",
  "serde_json",
